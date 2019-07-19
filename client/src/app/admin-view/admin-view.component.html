@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" [class.mat-elevation-z5]="true" class="toolbar" fxLayoutGap="10px">
+  <img src="assets/detective1.png" style="height:60%">
+  <span>Jeu des 7 différences</span>
+  <span class="fill-remaining-space"></span>
+  <button mat-raised-button color="primary" id="button1" (click)="openSPVgameDialog()">Créer jeu mode PDV simple</button>
+  <button flex mat-raised-button color="primary" id="button2" (click)="openFPVgameDialog()">Créer jeu mode PDV libre</button>
+</mat-toolbar>
+
+<app-games-list-view></app-games-list-view>
+

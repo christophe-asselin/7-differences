@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" [class.mat-elevation-z5]="true" class="toolbar" fxLayoutGap="10px">
+  <img src="assets/detective1.png" style="height:60%">
+  <span>Jeu des 7 différences</span>
+</mat-toolbar>
+
+<div id="login-page">
+  <div id="background"></div>
+  <div fxLayout="column" fxLayoutAlign="center center" id="logo">
+    <img src="assets/detective1.png" width="200" height="200">
+    <h1 class="mat-display-3" id="game-name">Jeu des 7 différences</h1>
+  </div>
+  <div class="login">
+    <mat-card [class.mat-elevation-z5]="true">
+      <form>
+        <mat-form-field>
+          <input matInput #username placeholder="Nom d'utilisateur" [formControl]="usernameFormControl" (keyup.enter)=connect(username.value) required>
+          <mat-error *ngIf="usernameFormControl.hasError('minlength') && !usernameFormControl.hasError('required')">
+              Minimum 4 caractères
+          </mat-error>
+          <mat-error *ngIf="usernameFormControl.hasError('maxlength')">
+              Maximum 12 caractères
+          </mat-error>
+          <mat-error *ngIf="usernameFormControl.hasError('pattern')">
+              Lettres et chiffres seulement
+          </mat-error>
+          <mat-error *ngIf="usernameFormControl.hasError('required')">
+            Un nom d'utilisateur est <strong>requis.</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-stroked-button color="primary" type="button" (click)=connect(username.value)>Se connecter</button>
+      </form>
+    </mat-card>
+  </div>
+</div>
+

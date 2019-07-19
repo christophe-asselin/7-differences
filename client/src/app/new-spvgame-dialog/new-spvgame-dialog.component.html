@@ -1,0 +1,50 @@
+<h2>Créer un jeu point de vue simple</h2>
+<p>Format d'image: bitmap 24-bits (640X480)</p>
+<div class="new-spvgame-dialog">
+    <form>
+        <div class="game-name-container">
+            <div class="name-input-indicator">
+            <p>Nom du jeu</p>
+            </div>
+            <div class="name-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Entrer</mat-label>
+                <input #name matInput required minlength="4" maxlength="15" [formControl]="nameFormControl">
+                <mat-error *ngIf="nameFormControl.hasError('required')">
+                    Un nom de jeu est <strong>requis.</strong>
+                </mat-error>
+                <mat-error *ngIf="nameFormControl.hasError('minlength') && !nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+                    Le nom de jeu doit comporter au moins 4 caractères.
+                </mat-error>
+                <mat-error *ngIf="nameFormControl.hasError('pattern') && !nameFormControl.hasError('required')">
+                    Le nom ne doit comporter que des lettres et chiffres.
+                </mat-error>
+            </mat-form-field>
+            </div>
+        </div>
+            <div #image class="original-image-input">
+                <label for="file" class="input-label">Image originale:</label>
+                <input type="file" required
+                    [formControl]="origImageFormControl"
+                    (change)="handleOriginalImage($event.target.files[0])">
+                    
+            </div>
+            <div class="modified-image-input">
+                <label for="file" class="input-label">Image modifiée:</label>
+                <input type="file"required
+                    [formControl]="modImageFormControl"
+                    (change)="handleModifiedImage($event.target.files[0])">
+            </div>
+            <div class="submit-button">
+                <div class="button1">
+                        <button mat-raised-button color="primary"(click)="sendRequest(name.value, image.value)" 
+                        [disabled]="nameFormControl.hasError('minlength') || nameFormControl.hasError('required') || 
+                        origImageFormControl.hasError('required') || modImageFormControl.hasError('required')">Soummetre</button>
+                </div>
+                <div class="cancel-button">
+                    <button mat-raised-button color="primary" (click)="close()">Annuler</button>
+                </div>
+            </div>
+    </form>
+</div>
+

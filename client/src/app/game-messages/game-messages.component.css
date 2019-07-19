@@ -1,0 +1,11 @@
+#messages {
+    bottom: 0;
+    height: 25%;
+    overflow: auto;
+    border: solid 0.2em;
+    border-color: #FDD55B;
+}
+
+.message {
+    margin-left: 15px;
+}

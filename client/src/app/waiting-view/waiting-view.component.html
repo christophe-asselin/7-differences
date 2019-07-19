@@ -1,0 +1,11 @@
+<div>
+  <mat-toolbar color="primary" [class.mat-elevation-z5]="true" class="toolbar" fxLayoutGap="10px">
+    <img src="assets/detective1.png" style="height:60%">
+    <span>Jeu des 7 différences</span>
+    <div class="cancel-button" fxLayout="row">
+      <button mat-raised-button color="primary" color="accent" id="cancel-button" (click)="cancelNewGame()">Annuler</button>
+    </div>
+  </mat-toolbar>
+</div>
+<h2 class="waiting-text">En attente de connexion d'un autre joueur...</h2>
+<div class="loader"></div>

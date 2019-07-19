@@ -1,0 +1,38 @@
+
+.new-fpvgame-dialog{
+    display: flex;
+    flex-direction: column;
+}
+.game-name-container{
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+}
+
+.name-input-indicator{
+    padding-right: 20px;
+}
+
+.new-game-spec{
+    padding-left: 20px;
+}
+
+.modif-type ul {
+    padding: 0px;
+}
+
+.buttons{
+    display: flex;
+}
+
+.submit-button{
+    padding: 40px;
+}
+
+.cancel-button{
+    padding: 40px;  
+}
+
+.p1{
+    margin-top: 10px;
+}

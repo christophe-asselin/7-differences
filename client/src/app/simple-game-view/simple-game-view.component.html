@@ -1,0 +1,46 @@
+<mat-toolbar color="primary" [class.mat-elevation-z5]="true" class="toolbar" fxLayoutGap="10px">
+  <img src="assets/detective1.png" style="height:60%">
+  <span>Jeu des 7 différences</span>
+  <span class="spacer"></span>
+  <span class="time">Temps: {{elapsedTime | date:"mm:ss"}}</span>
+  <button mat-raised-button color="primary" color="accent" (click)="quitGame()"class="quit-button">Quitter la partie</button>
+</mat-toolbar>
+
+    <div class="cards" fxLayout="row" [ngClass]="{'cursor-not-allowed': isError}">
+      <mat-card [class.mat-elevation-z5]="true">
+        <div *ngIf="currentGame" ng-Init="startTimer()" class="image" (click)="onImageClick($event.offsetX, $event.offsetY, $event.clientX, $event.clientY)">
+          <img src={{currentGame.originalImageURL}}>
+        </div>
+        <div *ngIf="!currentGame" class="image">
+         <div class="loader"></div>
+        </div>
+      </mat-card>
+      <div *ngIf="nPlayers === 'solo'" class="counters">
+        <div *ngIf="currentUser" id="diffName">{{currentUser.username}}</div>
+        <div id="diffCounter">{{nDifferencesFoundSolo}} / 7</div>
+        <div id="diffText">différences trouvées</div>
+      </div>
+      <div *ngIf="nPlayers === 'duo' && currentDuoGame"> 
+          <div *ngFor="let player of currentDuoGame.duoPlayers" class="counters">
+            <div id="diffName">{{player.user.username}}</div>
+            <div id="diffCounter">{{player.nDiffFound}} / 7</div>
+            <div id="diffText">différences trouvées</div>
+            <br>
+          </div>
+      </div>
+      <mat-card [class.mat-elevation-z5]="true">
+        <div *ngIf="currentGame" (click)="onImageClick($event.offsetX, $event.offsetY, $event.clientX, $event.clientY)">
+          <img class="image" src={{currentGame.modifiedImageURL}}>
+        </div>
+        <div *ngIf="!currentGame" class="image">
+          <div class="loader"></div>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="error-sign" *ngIf="isError" [ngStyle]="{'top':errorCoordinateY, 'left':errorCoordinateX,'cursor':'not-allowed'}">
+      <img src="assets/error_sign.png">
+    </div>
+    <div id="background"></div>
+
+<app-game-messages></app-game-messages>

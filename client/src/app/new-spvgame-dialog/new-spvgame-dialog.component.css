@@ -1,0 +1,40 @@
+
+.new-spvgame-dialog{
+    display: flex;
+    flex-direction: column;
+}
+.game-name-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.name-input-indicator{
+    padding-right: 20px;
+}
+
+.original-image-input{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    flex-direction: row;
+}
+
+.modified-image-input{
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.submit-button{
+    display: flex;
+}
+
+.button1{
+    padding: 40px;
+}
+
+.cancel-button{
+    padding: 40px;  
+}
+
+.input-label {
+    padding-right: 10px;
+}

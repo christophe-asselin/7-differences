@@ -1,0 +1,42 @@
+#background {
+    margin-top: 44px;
+    width: 100%;
+    height: 435px;
+    background-color: #673AB7;
+    z-index: -1;
+    position: absolute;
+}
+
+.login {
+    z-index: 0;
+    position: absolute;
+    margin-top: 430px;
+}
+
+.login mat-card {
+    width: 350px;
+    text-align: center;
+}
+
+.login button {
+    margin-left: 10px;
+}
+
+#logo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 110px;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+#game-name {
+    color: white;
+    padding-top: 10px;
+}
+
+#login-page {
+    display: flex;
+    justify-content: center;
+}

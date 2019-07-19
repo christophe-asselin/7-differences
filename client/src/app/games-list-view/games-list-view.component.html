@@ -1,0 +1,82 @@
+<mat-toolbar *ngIf="href === '/games'" color="primary" [class.mat-elevation-z5]="true" class="toolbar" fxLayoutGap="10px">
+  <img src="assets/detective1.png" style="height:60%">
+  <span>Jeu des 7 différences</span>
+  <span class="fill-remaining-space"></span>
+  <span *ngIf="currentUser" id="username">{{currentUser.username}}</span>
+</mat-toolbar>
+
+<div fxLayout="row" fxLayoutAlign="space-evenly start" fxLayoutGap="30px">
+    <div fxLayout="column" fxLayoutGap="30px" class="game-card" id="cards">
+      <mat-card *ngFor="let simpleGame of simpleGames" [class.mat-elevation-z3]="true">
+        <mat-card-header>
+          <mat-card-title>{{simpleGame.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+          <div id="card-img">
+            <img mat-card-img src={{simpleGame.originalImageURL}} height="192" width="256">
+          </div>
+          <mat-card-content>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <mat-list>
+                <mat-list-item id="table-centered">SOLO</mat-list-item>
+                <mat-divider [inset]="true"></mat-divider>
+                <mat-list-item *ngFor="let simpleScoreSolo of simpleGame['scoreSolo']">{{simpleScoreSolo.name}} : {{simpleScoreSolo.time}}</mat-list-item>
+                <div id="table-centered">
+                  <button *ngIf="href === '/games'" mat-raised-button color="primary" (click)="onPlayClick(simpleGame._id, simpleGame.type)">Jouer</button>
+                  <button *ngIf="href === '/admin'" mat-raised-button color="primary" (click)="onRemoveClick(simpleGame._id, simpleGame.type)">Supprimer</button>
+                </div>
+              </mat-list>
+              <mat-list>
+                <mat-list-item id="table-centered">1 VS 1</mat-list-item>
+                <mat-divider [inset]="true"></mat-divider>
+                <mat-list-item *ngFor="let simpleScoreDuo of simpleGame['scoreDuo']">{{simpleScoreDuo.name}} : {{simpleScoreDuo.time}}</mat-list-item>
+                <div id="table-centered">
+                  <button *ngIf="href === '/games' && simpleGame.state === 'notWaiting'" mat-raised-button color="primary" (click)="onCreateClick(simpleGame._id, simpleGame.type)">Créer</button>
+                  <button *ngIf="href === '/games' && simpleGame.state === 'waiting'" mat-raised-button color="accent" (click)="onJoinClick(simpleGame._id, simpleGame.type)">Joindre</button>
+                  <button *ngIf="href === '/admin'" mat-raised-button color="accent" (click)="onResetClick(simpleGame._id, simpleGame.type)">Réinitialiser</button>
+                </div>
+              </mat-list>
+            </div>
+          </mat-card-content>
+        </div>
+      </mat-card>
+    </div>
+  
+    <div fxLayout="column" fxLayoutGap="30px" class="game-card" id="cards">
+        <mat-card *ngFor="let freeGame of freeGames" [class.mat-elevation-z3]="true">
+          <mat-card-header>
+            <mat-card-title>{{freeGame.name}}</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <div id="card-img">
+              <img mat-card-img src={{freeGame.originalImageURL}} height="192" width="256">
+            </div>
+            <mat-card-content>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <mat-list>
+                  <mat-list-item id="table-centered">SOLO</mat-list-item>
+                  <mat-divider [inset]="true"></mat-divider>
+                  <mat-list-item *ngFor="let freeScoreSolo of freeGame['scoreSolo']">{{freeScoreSolo.name}} : {{freeScoreSolo.time}}</mat-list-item>
+                  <div id="table-centered">
+                    <button *ngIf="href === '/games'" mat-raised-button color="primary" (click)="onPlayClick(freeGame._id, freeGame.type)">Jouer</button>
+                  <button *ngIf="href === '/admin'" mat-raised-button color="primary" (click)="onRemoveClick(freeGame._id, freeGame.type)">Supprimer</button>
+                  </div>
+                </mat-list>
+                <mat-list>
+                  <mat-list-item id="table-centered">1 VS 1</mat-list-item>
+                  <mat-divider [inset]="true"></mat-divider>
+                  <mat-list-item *ngFor="let freeScoreDuo of freeGame['scoreDuo']">{{freeScoreDuo.name}} : {{freeScoreDuo.time}}</mat-list-item>
+                  <div id="table-centered">
+                    <button *ngIf="href === '/games' && freeGame.state === 'notWaiting'" mat-raised-button color="primary" (click)="onCreateClick(freeGame._id, freeGame.type)">Créer</button>
+                    <button *ngIf="href === '/games' && freeGame.state === 'waiting'" mat-raised-button color="accent" (click)="onJoinClick(freeGame._id, freeGame.type)">Joindre</button>
+                  <button *ngIf="href === '/admin'" mat-raised-button color="accent" (click)="onResetClick(freeGame._id, freeGame.type)">Réinitialiser</button>
+                  </div>
+                </mat-list>
+              </div>
+            </mat-card-content>
+          </div>
+        </mat-card>
+      </div>
+  </div>

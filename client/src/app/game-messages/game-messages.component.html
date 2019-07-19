@@ -1,0 +1,8 @@
+<div id="messages" #msg [scrollTop]="msg.scrollHeight">
+  <mat-list>
+    <mat-list-item *ngFor="let message of messages">
+      <mat-icon mat-list-icon>message</mat-icon>
+      <p class="message">{{message}}</p>
+    </mat-list-item>
+  </mat-list>
+</div>

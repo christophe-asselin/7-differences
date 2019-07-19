@@ -1,0 +1,72 @@
+<h2>Créer un jeu point de vue libre</h2>
+<div class="new-fpvgame-dialog">
+    <form [formGroup]="userForm" (ngSubmit)="processRequest(true)">
+        <div class="game-name-container">
+            <div class="name-input-indicator">
+              <p>Nom du jeu</p>
+            </div>
+            <div class="name-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Entrer</mat-label>
+                <input id="gameName" formControlName="gameName" matInput required minlength="4" maxlength="15">
+                <mat-error *ngIf="userForm.get('gameName').hasError('required')">
+                    Un nom de jeu est <strong>requis.</strong>
+                </mat-error>
+                <mat-error *ngIf="userForm.get('gameName').hasError('minlength') && !userForm.get('gameName').hasError('required') && !userForm.get('gameName').hasError('pattern')">
+                    Le nom de jeu doit comporter au moins 4 caractères.
+                </mat-error>
+                <mat-error *ngIf="userForm.get('gameName').hasError('pattern') && !userForm.get('gameName').hasError('required')">
+                    Le nom ne doit comporter que des lettres et chiffres.
+                </mat-error>
+            </mat-form-field>
+            </div>
+        </div>
+        <div class="new-game-spec">
+            <div class="objects-type">
+            <mat-form-field>
+                <mat-select id="objectType" formControlName="objectType" placeholder="Type d'objets" required >
+                    <mat-option value="geometricForm">Formes géométriques</mat-option>
+                    <mat-option value="thematic">Thématique</mat-option>
+                </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="object-quantity-input">
+                <mat-form-field>
+                    <input id="objectQty" formControlName="objectQty" matInput placeholder="Quantité d'objets" name="quantity" min="10" max="200">
+                    <mat-error *ngIf="userForm.get('objectQty').hasError('required')">
+                            Une quantité d'objet est <strong>requise.</strong>
+                    </mat-error>
+                    <mat-error *ngIf="userForm.get('objectQty').hasError('min') || userForm.get('objectQty').hasError('max') && !userForm.get('objectQty').hasError('required')">
+                        La quantité d'objet doit être en 10 et 200.
+                    </mat-error>
+                    <mat-error *ngIf="userForm.get('objectQty').hasError('pattern') && !userForm.get('objectQty').hasError('required')">
+                        Le quantité d'objet doit comporter que des chiffres.
+                    </mat-error>
+                </mat-form-field>
+                <h6 class ="p1">Min 10; Max 200</h6>
+            </div>
+            <div class="name-modif-type">
+                <mat-label>Type de modifications</mat-label>
+            </div>
+            <div class= "modif-type">
+                <ul style="list-style-type:none;">
+                    <li><mat-checkbox id="modifTypeAdd"formControlName="modifTypeAdd" value = "add" > Ajout</mat-checkbox></li>
+                    <li><mat-checkbox id="modifTypeDelete"formControlName="modifTypeDelete" value = "delete" > Suppression</mat-checkbox></li>
+                    <li><mat-checkbox id="modifTypeColorChange"formControlName="modifTypeColorChange" value = "colorChange" > Changement de couleur</mat-checkbox></li>
+                </ul>
+            </div>
+        </div>
+            <div class="buttons">
+                <div class="submit-button">
+                        <button id="submit" mat-raised-button color="primary" [disabled] = "userForm.get('gameName').hasError('minlength') || 
+                        userForm.get('gameName').hasError('required')  || userForm.get('objectType').hasError('required')|| 
+                        userForm.get('objectQty').hasError('required') || userForm.get('objectQty').hasError('min') || 
+                        userForm.get('objectQty').hasError('max') || userForm.get('objectQty').hasError('pattern') || 
+                        !validateCheckBox()" type="submit">Soummetre</button>
+                </div>
+                <div class="cancel-button">
+                    <button mat-raised-button color="primary" type="button" (click)="close()">Annuler</button>
+                </div>
+            </div>
+    </form>
+</div>

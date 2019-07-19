@@ -1,0 +1,8 @@
+.button {
+  display: flex;
+  align-self: right;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
